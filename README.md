@@ -21,5 +21,8 @@ ENTRY HERE
 
 ```
 ---
+write about what scripts do
+
+---
 
 Contact: Adriano de Bernardi Schneider (@abschneider, <adeberna@ucsd.edu>) or Michael T. Wolfinger (@mtw, <michael.wolfinger@univie.ac.at>)
