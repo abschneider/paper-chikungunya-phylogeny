@@ -29,17 +29,17 @@ NJ_build_collapse <- function(filePath, accession, bootstrapValue) {
   # Build NJ tree from distance matrix
   aln_NJ <- bionj(dna_dist)
   
-  myBoots <- boot.phylo(aln_NJ, dna, function(e) # Run bootstrap
+  BS <- boot.phylo(aln_NJ, dna, function(e) # Run bootstrap
     root(nj(dist.dna(e, model=maxmt$Model)),accession)) 
-  myBoots
+  BS
  
   # Collapse branches of poorly supported nodes into multifurcations with bootstrap values less than X%
-  temp <- aln_NJ # Dont want to change chikv_NJ file itself, assign to new variable for safekeeping
+  trans_NJ <- aln_NJ # Dont want to change chikv_NJ file itself, assign to new variable for safekeeping
   N <- length(aln_NJ$tip.label) # Get total number of taxa from tree
-  toCollapse <- match(which(myBoots<bootstrapValue)+N, temp$edge[,2]) # Match bootstrap value at node to 'destination' edge in second column, returns node number with bs <x%, to be collapsed
-  temp$edge.length [toCollapse] <- 0 # Assigns 0 to edge lengths of nodes with bs <x%, collapses
+  toCollapse <- match(which(BS<bootstrapValue)+N, trans_NJ$edge[,2]) # Match bootstrap value at node to 'destination' edge in second column, returns node number with bs <x%, to be collapsed
+  trans_NJ$edge.length [toCollapse] <- 0 # Assigns 0 to edge lengths of nodes with bs <x%, collapses
   # di2multi collapse or resolve multichotomies in phylogenetic trees
-  collapsedTree <- di2multi(temp, tol=.00001) # For branch to be considered separate, must be at least this length
+  collapsedTree <- di2multi(trans_NJ, tol=.00001) # For branch to be considered separate, must be at least this length
   
   finaltree <- root(collapsedTree, out = accession, resolve.root = TRUE) 
   rootedTree <<- ladderize(finaltree)
