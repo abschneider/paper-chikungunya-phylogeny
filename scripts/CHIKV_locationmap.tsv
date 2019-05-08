@@ -1,0 +1,90 @@
+# AS - Asia	
+# CAR - Caribbean (in plot shown as Central American)	
+# NAm - Northern America	
+# CAm - Central America	
+# SAm - Southern America	
+# EU - Europe	
+# OC - Oceania	
+# EAf - Eastern Africa	
+# MAf - Middle Africa	
+# SAf - Southern Africa	
+# WAf - Western Africa	
+	
+SAs	Bangladesh
+SEAs	Borneo
+SEAs	Cambodia
+EAs	China
+EAs	Hong_Kong
+SAs	India
+SEAs	Indonesia
+SEAs	Laos
+SEAs	Malaysia
+SEAs	Myanmar
+SAs	Pakistan
+MEL	Papua_New_Guinea
+SEAs	Philippines
+SEAs	Singapore
+SEAs	Sri_Lanka
+SEAs	Thailand
+SEAs	Timor-Leste
+CAR	Anguilla
+CAR	Antigua_and_Barbuda
+CAR	Bahamas
+CAR	Barbados
+CAR	British_Virgin_Islands
+CAR	Caribbean
+CAR	Cayman_Islands
+CAR	Dominica
+CAR	Dominican_Republic
+CAR	Grenada
+CAR	Haiti
+CAR	Jamaica
+CAR	Montserrat
+CAR	Puerto_Rico
+CAR	Saint_Kitts_and_Nevis
+CAR	Saint_Lucia
+CAR	Saint_Martin
+CAR	Saint_Vincent_and_the_Grenadines
+CAR	St_Barts
+CAR	Turks_and_Caicos_Islands
+CAR	Virgin_Islands
+CAm	El_Salvador
+CAm	Guatemala
+CAm	Honduras
+CAm	Nicaragua
+CAm	Panama
+CAR	Trinidad_and_Tobago
+EAf	Tanzania
+WAs	Yemen
+EU	France
+EU	Italy
+MAf	Angola
+MAf	Cameroon
+MAf	Central_African_Republic
+MAf	Democratic_Republic_of_the_Congo
+MAf	Gabon
+MAf	Republic_of_the_Congo
+EAf	Uganda
+NAm	USA
+POLY	American_Samoa
+AUSNZ	Australia
+POLY	French_Polynesia
+MIC	Kiribati
+MIC	Micronesia
+EAf	Reunion
+POLY	Samoa
+EAf	Comoros
+EAf	Madagascar
+EAf	Mauritius
+EAf	Mayotte
+SAf	South_Africa
+SAm	Brazil
+SAm	Colombia
+SAm	French_Guiana
+CAR	Guadeloupe
+SAm	Guyana
+CAm	Mexico
+SAm	Suriname
+WAf	Cote_d_Ivoire
+WAf	Nigeria
+WAf	Senegal
