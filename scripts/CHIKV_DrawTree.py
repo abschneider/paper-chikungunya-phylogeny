@@ -6,7 +6,7 @@ from collections import Counter
 p = argparse.ArgumentParser(description='Create colored Phylogenetic Tree of CHIKV lineages', formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 p.add_argument('-t', '--tree', help='Tree file (NEWICK)', default='CHIKV.all.partition.nex.colored.tree.newick')
 p.add_argument('--loc', help='File mapping accession id -> country (Tab-separated)', default='CHIKV_origins.tsv')
-p.add_argument('--lin', help='Mapping accession id -> Lineage file (Tab-separated)', default='CHIKV_lineages_all.tsv')
+p.add_argument('--lin', help='File Mapping accession id -> Lineage (Tab-separated)', default='CHIKV_lineages_all.tsv')
 p.add_argument('--geo', help='File mapping country -> Geolocation (Tab-separated)', default='CHIKV_locationmap.tsv')
 args = p.parse_args()
 
