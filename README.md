@@ -25,7 +25,7 @@ ENTRY HERE
 
 User must hardcode the input file paths to execute functions on master.R.
 
-The master.R script is dependent on the following functions available at functions.R:
+The master.R script is dependent on the following functions(available at functions.R):
 
 *NJ_build_collapse(filePath, accession, bootstrapValue) - Neighbor-Joining (NJ) tree-builder*:
 
