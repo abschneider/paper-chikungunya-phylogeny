@@ -1,15 +1,15 @@
-# Updated Phylogeny of Chikungunya Virus Reveals Lineage-specific Non-coding RNAs
+# Updated phylogeny of Chikungunya virus reveals lineage-specific non-coding RNAs
 
 "URL of submitted file here"
 
 # Authors
 
-* Adriano de Bernardi Schneider, Ph.D.
+* Adriano de Bernardi Schneider
 * Roman Ochseinreiter
 * Reilly Hostager
-* Ivo L. Hofacker, Ph.D.
-* Daniel Janies, Ph.D.
-* Michael T. Wolfinger, Ph.D.
+* Ivo L. Hofacker
+* Daniel Janies
+* Michael T. Wolfinger [[@mtw](https://github.com/mtw)]
 
 ---
 
@@ -53,4 +53,4 @@ A function which creates a map of the inferred network, designating appropriate 
 
 ---
 
-Contact: Adriano de Bernardi Schneider (@abschneider, <adeberna@ucsd.edu>) or Michael T. Wolfinger (@mtw, <michael.wolfinger@univie.ac.at>)
+Contact: Adriano de Bernardi Schneider ([@abschneider](https://github.com/abschneider), <adeberna@ucsd.edu>) or Michael T. Wolfinger ([@mtw](https://github.com/mtw), <michael.wolfinger@univie.ac.at>)
