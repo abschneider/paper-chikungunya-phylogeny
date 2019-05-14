@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import ete3
 import pandas as pd
 import argparse
@@ -8,6 +10,8 @@ p.add_argument('-t', '--tree', help='Tree file (NEWICK)', default='CHIKV.all.par
 p.add_argument('--loc', help='File mapping accession id -> country (Tab-separated)', default='CHIKV_origins.tsv')
 p.add_argument('--lin', help='File Mapping accession id -> Lineage (Tab-separated)', default='CHIKV_lineages_all.tsv')
 p.add_argument('--geo', help='File mapping country -> Geolocation (Tab-separated)', default='CHIKV_locationmap.tsv')
+p.add_argument('-u', '--ultrametric', help='Draw Ultrametric Tree', default=False, action='store_true')
+p.add_argument('-l', '--linewidth', help='Line width', default=8, type=int)
 args = p.parse_args()
 
 def main():
@@ -123,8 +127,8 @@ def main():
         nst["vt_line_color"] = color
         nst["hz_line_color"] = color
         nst['size'] = 0
-        nst["vt_line_width"] = 8
-        nst["hz_line_width"] = 8
+        nst["vt_line_width"] = args.linewidth
+        nst["hz_line_width"] = args.linewidth
         n.set_style(nst)
 
 
@@ -138,8 +142,8 @@ def main():
 
         nst["vt_line_color"] = loc_color
         nst["hz_line_color"] = loc_color
-        nst["vt_line_width"] = 8
-        nst["hz_line_width"] = 8
+        nst["vt_line_width"] = args.linewidth
+        nst["hz_line_width"] = args.linewidth
         n.set_style(nst)
 
         proxy_leaf = n.add_child(name=n.name, dist=0)
@@ -148,8 +152,8 @@ def main():
         nst_proxy = ete3.NodeStyle()
         nst_proxy["vt_line_color"] = loc_color
         nst_proxy["hz_line_color"] = loc_color
-        nst_proxy["vt_line_width"] = 8
-        nst_proxy["hz_line_width"] = 8
+        nst_proxy["vt_line_width"] = args.linewidth
+        nst_proxy["hz_line_width"] = args.linewidth
         nst_proxy['bgcolor'] = lin_color
         proxy_leaf.set_style(nst_proxy)
         proxy_leaf.img_style['size'] = 0
@@ -158,6 +162,9 @@ def main():
     sty_circ = Treestyle_circular(360)
     sty_circ.show_leaf_name = True
     sty_circ.show_scale = False
+    #Check if ultrametric is set
+    if args.ultrametric is True:
+        tree = Ultrametric(tree, 0)
     tree.show(tree_style=sty_circ)
 
 
