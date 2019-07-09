@@ -1,4 +1,4 @@
-# Updated phylogeny of Chikungunya virus reveals lineage-specific non-coding RNAs
+# Updated phylogeny of Chikungunya virus reveals lineage-specific RNA architecture
 
 "URL of submitted file here"
 
