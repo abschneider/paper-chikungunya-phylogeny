@@ -12,6 +12,7 @@ p.add_argument('--lin', help='File Mapping accession id -> Lineage (Tab-separate
 p.add_argument('--geo', help='File mapping country -> Geolocation (Tab-separated)', default='CHIKV_locationmap.tsv')
 p.add_argument('-u', '--ultrametric', help='Draw Ultrametric Tree', default=False, action='store_true')
 p.add_argument('-l', '--linewidth', help='Line width', default=8, type=int)
+p.add_argument('-c', '--circ', help='Draw circular tree', action='store_true')
 args = p.parse_args()
 
 def main():
@@ -19,13 +20,14 @@ def main():
     origins = pd.read_csv(args.loc, sep='\s+', names=['id', 'origin'], comment='#')
     lineages = pd.read_csv(args.lin, sep='\s+', names=['id', 'lineage'], comment='#')
 
-    #Merge into one Dataframe
-    virdata = origins.merge(lineages, how='left').drop_duplicates(subset=['id'])
-    virdata.lineage = virdata.lineage.fillna(value='Default')
+    #Merge into one Dataframe (if 1 accession id has multiple entries - keep last)
+    virdata = origins.merge(lineages, how='outer').drop_duplicates(subset=['id'], keep='last')
+    virdata = virdata.fillna(value='Default')
 
     #Parse location 2 region mapping file
     loc = pd.read_csv(args.geo, sep='\s+', comment='#', names=['region', 'country'])
 
+    #Create mapping location -> geo-region
     location2region = {}
     for i, l in loc.iterrows():
         location2region[l.country] = l.region
@@ -40,7 +42,9 @@ def main():
                         'IOL_EasternAfricanlineage_EasternAfricanOnly' : '#2166ac',
                         'middleafrica_southamericanlineage_middleafricanonly' : '#41ab5d',
                         'middleafrica_southamericanlineage' : '#a1d99b',
+                        'asian_urban_lineage_americanlineage_insertion' : 'MistyRose',
                         'Default' : 'Grey'}
+
     #Define Georegion Colors
     region2color = { 'NAm': '#b10026', #American lineages
                      'SAm': '#e31a1c',
@@ -64,26 +68,39 @@ def main():
                    }
 
     locs_etecolors = {location : region2color[location2region[location]] for location in location2region}
-
+    locs_etecolors['Default'] = 'Grey'
 
     #Create Tree
     tree = ete3.Tree(args.tree)
 
+    #Convert into ultrametric tree if arg is set
+    if args.ultrametric is True:
+        tree = Ultrametric(tree, 0)
+
     #Add data into tree
     for n in tree:
         accid = n.name.replace('\'', '')
-    #     n.name = accid + n.lineage    #DEBUG
-        n.accid = accid.split('_')[0]
-        n.name = accid.split('_')[0]
-    #     n.name = '_'.join(accid.split('_')[1:])
+        #Handle refseq entry (NC_XXXXX.1)
+        if accid[:2] == 'NC':
+            n.accid = '_'.join(accid.split('_')[:2])
+            n.name = '_'.join(accid.split('_')[:2])
+        else:
+            n.accid = accid.split('_')[0]
+            n.name = accid.split('_')[0]
+
         #lineage data
         n.lineage = virdata[virdata.id == n.accid].lineage.values
         if len(n.lineage) == 0:
-            n.lineage = None
+            n.lineage = 'Default'
         else:
             n.lineage = n.lineage[0]
+
         #origin data
-        n.origin = virdata[virdata.id == n.accid].origin.values[0]
+        n.origin = virdata[virdata.id == n.accid].origin.values
+        if len(n.origin) == 0:
+            n.origin = 'Default'
+        else:
+            n.origin = n.origin[0]
 
 
 
@@ -118,15 +135,12 @@ def main():
         #based on LOCATION, decide color
         location, num_samples = n.locations.most_common()[0]
         color = locs_etecolors[location]
-        #based on LINEAGE, decide color
-    #     lineage, lin_samples = n.lineages.most_common()[0]
-    #     color = lins_etecolors[lineage]
 
         nst = ete3.NodeStyle()
     #     nst['bgcolor'] = color
         nst["vt_line_color"] = color
         nst["hz_line_color"] = color
-        nst['size'] = 0
+        nst['size'] = 1
         nst["vt_line_width"] = args.linewidth
         nst["hz_line_width"] = args.linewidth
         n.set_style(nst)
@@ -162,10 +176,11 @@ def main():
     sty_circ = Treestyle_circular(360)
     sty_circ.show_leaf_name = True
     sty_circ.show_scale = False
-    #Check if ultrametric is set
-    if args.ultrametric is True:
-        tree = Ultrametric(tree, 0)
-    tree.show(tree_style=sty_circ)
+
+    if args.circ:
+        tree.show(tree_style=sty_circ)
+    else:
+        tree.show()
 
 
 def Ultrametric(tree, leaf_size=4):
