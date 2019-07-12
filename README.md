@@ -1,6 +1,6 @@
 # Updated phylogeny of Chikungunya virus reveals lineage-specific RNA architecture
 
-"URL of submitted file here"
+This repository contains software and datasets for the above publication. A preprint is available from BioRxiv at https://doi.org/10.1101/698522
 
 # Authors
 
@@ -16,9 +16,18 @@
 Please cite using the following BibTex entry:
 
 ```
-
-ENTRY HERE
-
+@article {deBernardiSchneider-2019,
+	author = {de Bernardi Schneider, Adriano and Ochsenreiter, Roman and Hostager, Reilly and Hofacker, Ivo L and Janies, Daniel and Wolfinger, Michael T},
+	title = {Updated phylogeny of {C}hikungunya virus reveals lineage-specific {RNA} architecture},
+	elocation-id = {698522},
+	year = {2019},
+	doi = {10.1101/698522},
+	publisher = {Cold Spring Harbor Laboratory},
+	abstract = {Chikungunya virus (CHIKV), a mosquito-borne alphavirus of the family Togaviridae, has recently emerged in the Americas from lineages from two continents, Asia and Africa. Historically, CHIKV circulated as at least four lineages worldwide with both enzootic and epidemic transmission cycles. To understand the recent patterns of emergence and the current status of the CHIKV spread, updated analyses of the viral genetic data and metadata are needed. Here, we performed phylogenetic and comparative genomics screens of CHIKV genomes, taking advantage of the public availability of many recently sequenced isolates. Based on these new data and analyses, we derive a revised phylogeny from nucleotide sequences in coding regions. Using this phylogeny, we uncover the presence of several distinct lineages in Africa that were previously considered a single one. In parallel, we performed thermodynamic modeling of CHIKV untranslated regions (UTRs), which revealed evolutionarily conserved structured and unstructured RNA elements in the 3{\textquoteright}UTR. We provide evidence for duplication events in recently emerged American isolates of the Asian CHIKV lineage and propose the existence of a flexible 3{\textquoteright}UTR architecture among different CHIKV lineages.},
+	URL = {https://www.biorxiv.org/content/early/2019/07/11/698522},
+	eprint = {https://www.biorxiv.org/content/early/2019/07/11/698522.full.pdf},
+	journal = {bioRxiv}
+}
 ```
 ---
 # How-to/Workflow:
