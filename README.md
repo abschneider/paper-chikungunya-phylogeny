@@ -1,4 +1,5 @@
 # Updated phylogeny of Chikungunya virus suggests lineage-specific RNA architecture
+[![DOI](https://zenodo.org/badge/185108269.svg)](https://zenodo.org/badge/latestdoi/185108269)
 
 This repository contains software and datasets for the above paper, published at MDPI Viruses https://doi.org/10.3390/v11090798
 
